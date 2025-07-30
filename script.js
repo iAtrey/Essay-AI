@@ -13,86 +13,140 @@ class EssayAI {
     }
 
     setupEventListeners() {
-        // Tab navigation
-        document.querySelectorAll('.nav-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                this.switchTab(e.target.dataset.tab);
+        try {
+            // Tab navigation
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    this.switchTab(e.target.dataset.tab);
+                });
             });
-        });
 
-        // Essay Writer
-        document.getElementById('generateEssayBtn').addEventListener('click', () => {
-            this.generateEssay();
-        });
+            // Essay Writer
+            const generateEssayBtn = document.getElementById('generateEssayBtn');
+            if (generateEssayBtn) {
+                generateEssayBtn.addEventListener('click', () => {
+                    this.generateEssay();
+                });
+            } else {
+                console.error('Generate Essay button not found');
+            }
 
-        document.getElementById('copyBtn').addEventListener('click', () => {
-            this.copyToClipboard('essayOutput');
-        });
+            const copyBtn = document.getElementById('copyBtn');
+            if (copyBtn) {
+                copyBtn.addEventListener('click', () => {
+                    this.copyToClipboard('essayOutput');
+                });
+            }
 
-        document.getElementById('clearBtn').addEventListener('click', () => {
-            this.clearOutput('essayOutput');
-        });
+            const clearBtn = document.getElementById('clearBtn');
+            if (clearBtn) {
+                clearBtn.addEventListener('click', () => {
+                    this.clearOutput('essayOutput');
+                });
+            }
 
-        // Essay Improver
-        document.getElementById('improveEssayBtn').addEventListener('click', () => {
-            this.improveEssay();
-        });
+            // Essay Improver
+            const improveEssayBtn = document.getElementById('improveEssayBtn');
+            if (improveEssayBtn) {
+                improveEssayBtn.addEventListener('click', () => {
+                    this.improveEssay();
+                });
+            }
 
-        document.getElementById('copyImprovedBtn').addEventListener('click', () => {
-            this.copyToClipboard('improvedEssayOutput');
-        });
+            const copyImprovedBtn = document.getElementById('copyImprovedBtn');
+            if (copyImprovedBtn) {
+                copyImprovedBtn.addEventListener('click', () => {
+                    this.copyToClipboard('improvedEssayOutput');
+                });
+            }
 
-        // Citation Helper
-        document.getElementById('generateCitationBtn').addEventListener('click', () => {
-            this.generateCitation();
-        });
+            // Citation Helper
+            const generateCitationBtn = document.getElementById('generateCitationBtn');
+            if (generateCitationBtn) {
+                generateCitationBtn.addEventListener('click', () => {
+                    this.generateCitation();
+                });
+            }
 
-        document.getElementById('copyCitationBtn').addEventListener('click', () => {
-            this.copyToClipboard('citationOutput');
-        });
+            const copyCitationBtn = document.getElementById('copyCitationBtn');
+            if (copyCitationBtn) {
+                copyCitationBtn.addEventListener('click', () => {
+                    this.copyToClipboard('citationOutput');
+                });
+            }
 
-        document.getElementById('clearCitationsBtn').addEventListener('click', () => {
-            this.clearOutput('citationOutput');
-        });
+            const clearCitationsBtn = document.getElementById('clearCitationsBtn');
+            if (clearCitationsBtn) {
+                clearCitationsBtn.addEventListener('click', () => {
+                    this.clearOutput('citationOutput');
+                });
+            }
 
-        // Grammar Checker
-        document.getElementById('checkGrammarBtn').addEventListener('click', () => {
-            this.checkGrammar();
-        });
+            // Grammar Checker
+            const checkGrammarBtn = document.getElementById('checkGrammarBtn');
+            if (checkGrammarBtn) {
+                checkGrammarBtn.addEventListener('click', () => {
+                    this.checkGrammar();
+                });
+            }
 
-        document.getElementById('copyCorrectedBtn').addEventListener('click', () => {
-            this.copyToClipboard('grammarOutput');
-        });
+            const copyCorrectedBtn = document.getElementById('copyCorrectedBtn');
+            if (copyCorrectedBtn) {
+                copyCorrectedBtn.addEventListener('click', () => {
+                    this.copyToClipboard('grammarOutput');
+                });
+            }
 
-        // Header actions
-        document.getElementById('saveBtn').addEventListener('click', () => {
-            this.saveData();
-        });
+            // Header actions
+            const saveBtn = document.getElementById('saveBtn');
+            if (saveBtn) {
+                saveBtn.addEventListener('click', () => {
+                    this.saveData();
+                });
+            }
 
-        document.getElementById('exportBtn').addEventListener('click', () => {
-            this.exportEssay();
-        });
+            const exportBtn = document.getElementById('exportBtn');
+            if (exportBtn) {
+                exportBtn.addEventListener('click', () => {
+                    this.exportEssay();
+                });
+            }
 
-        // Settings modal
-        document.getElementById('saveSettings').addEventListener('click', () => {
-            this.saveSettings();
-        });
+            // Settings modal
+            const saveSettings = document.getElementById('saveSettings');
+            if (saveSettings) {
+                saveSettings.addEventListener('click', () => {
+                    this.saveSettings();
+                });
+            }
 
-        document.getElementById('closeSettings').addEventListener('click', () => {
-            this.closeSettingsModal();
-        });
+            const closeSettings = document.getElementById('closeSettings');
+            if (closeSettings) {
+                closeSettings.addEventListener('click', () => {
+                    this.closeSettingsModal();
+                });
+            }
 
-        document.getElementById('cancelSettings').addEventListener('click', () => {
-            this.closeSettingsModal();
-        });
+            const cancelSettings = document.getElementById('cancelSettings');
+            if (cancelSettings) {
+                cancelSettings.addEventListener('click', () => {
+                    this.closeSettingsModal();
+                });
+            }
 
-        // Real-time stats update
-        document.getElementById('essayOutput').addEventListener('input', () => {
-            this.updateStats();
-        });
+            // Real-time stats update
+            const essayOutput = document.getElementById('essayOutput');
+            if (essayOutput) {
+                essayOutput.addEventListener('input', () => {
+                    this.updateStats();
+                });
+            }
 
-        // Auto-save on input
-        this.setupAutoSave();
+            // Auto-save on input
+            this.setupAutoSave();
+        } catch (error) {
+            console.error('Error setting up event listeners:', error);
+        }
     }
 
     switchTab(tabName) {
@@ -112,7 +166,9 @@ class EssayAI {
     }
 
     async generateEssay() {
+        console.log('Generate essay function called');
         const formData = this.getEssayFormData();
+        console.log('Form data:', formData);
         
         if (!formData.topic) {
             this.showError('Please enter an essay topic');
@@ -126,10 +182,12 @@ class EssayAI {
             await this.delay(2000);
 
             const essay = this.generateMockEssay(formData);
+            console.log('Generated essay:', essay);
             this.displayEssay(essay);
             this.updateStats();
             this.saveData();
         } catch (error) {
+            console.error('Error generating essay:', error);
             this.showError('Failed to generate essay. Please try again.');
         } finally {
             this.hideLoading();
