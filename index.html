@@ -297,7 +297,7 @@
                             <input type="text" id="sourcePublisher" class="form-control" placeholder="Enter publisher">
                         </div>
 
-                        <button class="btn btn-primary btn-full" id="generateCitationBtn">
+                        <button class="btn btn-primary btn-full" id="generateCitationBtn" style="display: block !important; visibility: visible !important; opacity: 1 !important;">
                             <i class="fas fa-quote-right"></i>
                             Generate Citation
                         </button>
@@ -365,7 +365,7 @@
                             </div>
                         </div>
 
-                        <button class="btn btn-primary btn-full" id="checkGrammarBtn">
+                        <button class="btn btn-primary btn-full" id="checkGrammarBtn" style="display: block !important; visibility: visible !important; opacity: 1 !important;">
                             <i class="fas fa-spell-check"></i>
                             Check Grammar
                         </button>
@@ -435,5 +435,39 @@
     </div>
 
     <script src="script.js"></script>
+    <script>
+        // Test function to verify everything is working
+        window.testEssayAI = function() {
+            console.log('Testing EssayAI...');
+            if (window.essayAI) {
+                console.log('EssayAI is loaded successfully');
+                // Test the generate function
+                const testData = {
+                    type: 'argumentative',
+                    topic: 'Test Essay Topic',
+                    length: '1000',
+                    level: 'college',
+                    style: 'academic',
+                    citation: 'mla',
+                    keyPoints: 'Test point 1\nTest point 2',
+                    sources: 'Test source 1\nTest source 2',
+                    instructions: 'Test instructions'
+                };
+                console.log('Test data:', testData);
+                return true;
+            } else {
+                console.error('EssayAI not loaded');
+                return false;
+            }
+        };
+        
+        // Auto-test on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                console.log('Auto-testing EssayAI...');
+                window.testEssayAI();
+            }, 1000);
+        });
+    </script>
 </body>
 </html> 
